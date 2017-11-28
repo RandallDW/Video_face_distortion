@@ -1,3 +1,4 @@
+
 import cv2
 import numpy as np
 import os.path
@@ -21,11 +22,13 @@ while True:
   
     ret, frame = cap.read()  
     cv2_im = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
-    frame = Image.fromarray(cv2_im)
+#    frame = Image.fromarray(cv2_im)
   
-    img_distorted  =  spherize(frame)
-    image = cv2.cvtColor(np.array(img_distorted), cv2.COLOR_RGB2BGR)
-    cv2.imshow('Video', image)  
+    #img_distorted  =  spherize(frame)
+    img_distorted  =  gridline(frame)
+ 
+#    image = cv2.cvtColor(np.array(img_distorted), cv2.COLOR_RGB2BGR)
+    cv2.imshow('Video', img_distorted)  
   
   
     if cv2.waitKey(1) & 0xFF == ord('q'):  
