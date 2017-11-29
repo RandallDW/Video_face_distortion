@@ -1,12 +1,13 @@
 import math
 from PIL import Image
+import numpy as np
 def spherize(img):
     width = img.shape[1]
     height = img.shape[0]
     mid_x = width / 2
     mid_y = height / 2
     max_mid_xy = max(mid_x, mid_y)
-    dst_img = img
+    temp = np.zeros((height,width,3),np.uint8)
     for w in xrange(width):
         for h in xrange(height):
             offset_x = w - mid_x
@@ -21,7 +22,7 @@ def spherize(img):
             x = min(max(x, 0), width - 1)
             y = min(max(y, 0), height - 1)
             
-            dst_img[w, h] = img[x, y]
-            
-    return dst_img
+            temp[w, h] = img[x, y]
+
+    return temp
 
