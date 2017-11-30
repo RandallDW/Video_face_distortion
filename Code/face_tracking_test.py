@@ -12,8 +12,9 @@ upper_dir = os.path.abspath('..')
 
 cascPath = upper_dir + "/haarcascades" + "/haarcascade_frontalface_default.xml"  
 faceCascade = cv2.CascadeClassifier(cascPath)
-
+fourcc = cv2.cv.CV_FOURCC(*'XVID')
 video_capture = cv2.VideoCapture('test1.avi')  
+out = cv2.VideoWriter('outpy.avi',fourcc, 20.0, (640,480))
 
 tracker = dlib.correlation_tracker()
 tracking = 0
@@ -21,7 +22,8 @@ tracking = 0
 while video_capture.isOpened():
 
     ret, frame = video_capture.read()
-    
+    if frame is None:
+	break
     if not tracking:
 	
 	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -65,15 +67,15 @@ while video_capture.isOpened():
 
 	else:
 	    tracking = 0;
-
+    out.write(frame)
     cv2.imshow('Video', frame)
     
-    if cv2.waitKey(1) & 0xFF == ord('q'):  
+    if cv2.waitKey(10) & 0xFF == ord('q'):  
         break  
   
   
 video_capture.release()  
-  
+out.release()
 cv2.destroyAllWindows() 
 
 
