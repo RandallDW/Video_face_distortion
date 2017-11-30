@@ -12,9 +12,9 @@ upper_dir = os.path.abspath('..')
 
 cascPath = upper_dir + "/haarcascades" + "/haarcascade_frontalface_default.xml"  
 faceCascade = cv2.CascadeClassifier(cascPath)
-fourcc = cv2.cv.CV_FOURCC(*'XVID')
+fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
 video_capture = cv2.VideoCapture('test1.avi')  
-out = cv2.VideoWriter('outpy.avi',fourcc, 20.0, (640,480))
+out = cv2.VideoWriter('outpy.avi',fourcc, 20.0, (528,288))
 
 tracker = dlib.correlation_tracker()
 tracking = 0
