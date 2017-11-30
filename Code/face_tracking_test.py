@@ -93,7 +93,7 @@ while video_capture.isOpened():
 
 	else:
 	    tracking = 0;
-
+    out.write(frame)
     cv2.imshow('Video', frame)
     out.write(frame)
     ch = cv2.waitKey(1) 
@@ -111,7 +111,7 @@ while video_capture.isOpened():
   
   
 video_capture.release()  
-  
+out.release()
 cv2.destroyAllWindows() 
 
 

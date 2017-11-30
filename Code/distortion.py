@@ -3,6 +3,7 @@ import math
 import numpy as np
 from PIL import Image
 from scipy import signal
+import numpy as np
 def spherize(img):
     width = img.shape[1]
     height = img.shape[0]
@@ -23,7 +24,7 @@ def spherize(img):
 
             x = min(max(x, 0), width - 1)
             y = min(max(y, 0), height - 1)
-
+            
             temp[w, h] = img[x, y]
 
     return temp
