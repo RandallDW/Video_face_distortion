@@ -8,10 +8,11 @@
 
 ## Environment Setup
 	* Ubuntu 16.04
-	* Python 2.7.12
+	* Python 3
 	* Opencv 2.4.*
 		- Under Ubuntu16.04, some Opencv3 functions may not work.
 	* dlib
+	* Pyqt5
 
 
 ### Package installation 
