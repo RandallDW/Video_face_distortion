@@ -17,6 +17,10 @@ class GUI(QMainWindow):
         self.ui.start_video.clicked.connect(self.start_video)
         self.ui.end_video.clicked.connect(self.stop_video)
 
+        self.ui.sphere.clicked.connect(self.sphere_distortion)
+        self.ui.gridline.clicked.connect(self.gridline_distortion)
+        self.ui.wave.clicked.connect(self.wave_distortion)
+
         self.video = None
         self._timer = QTimer(self)
         self._timer.timeout.connect(self.play)
@@ -42,17 +46,27 @@ class GUI(QMainWindow):
                 self.video.distortion = 0
 
     def start_video(self):
-        self.video_capture = cv2.VideoCapture(0)  
-        self.video_capture.set(3, 20)
-        self.video_capture.set(4, 20)
-        self.video = Video(self.video_capture)
+        if self.video is None:
+            self.video_capture = cv2.VideoCapture(0)  
+            self.video_capture.set(3, 20)
+            self.video_capture.set(4, 20)
+            self.video = Video(self.video_capture)
 
     def stop_video(self):
-        self.video_capture.release()  
-        self.video = None
-        self.ui.VideoFrame.clear()
-        self.ui.is_distorted.setCheckState(False)
+        if self.video is not None:
+            self.video_capture.release()  
+            self.video = None
+            self.ui.VideoFrame.clear()
+            self.ui.is_distorted.setCheckState(False)
 
+    def sphere_distortion(self):
+        self.video.distort_method = 0
+
+    def gridline_distortion(self):
+        self.video.distort_method = 1
+
+    def wave_distortion(self):
+        self.video.distort_method = 2
 
 
 

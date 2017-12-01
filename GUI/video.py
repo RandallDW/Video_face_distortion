@@ -1,11 +1,18 @@
-import sys
 import cv2
+import sys  
+import logging as log  
+import datetime as dt  
 import numpy as np
-from PyQt5.QtCore import *                                                      
-from PyQt5.QtGui import *                                                       
+from time import sleep  
+from distortion import *
+import os.path
+import dlib
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *   
 from GUI import *
 from distortion import *
+
 class Video():
     def __init__(self,capture):
         self.capture = capture
@@ -14,28 +21,80 @@ class Video():
         upper_dir = os.path.abspath('..')
         cascPath =  upper_dir + "/haarcascades" + "/haarcascade_frontalface_default.xml"  
         self.faceCascade = cv2.CascadeClassifier(cascPath)  
+        self.fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
+
+        self.tracker = dlib.correlation_tracker()
+        self.tracking = 0
+
         self.distortion = 0
+        self.distort_method = 0
  
     def captureNextFrame(self):
         """                           
-        capture frame and reverse RBG BGR and return opencv image                                      
+        capture frame and reverse RBG BGR and return opencv image   
         """
         ret, frame = self.capture.read()
         if ret == True:
-            if self.distortion is 1:
-                faces = self.faceCascade.detectMultiScale(
-                    frame,
-                    scaleFactor=1.1,
-                    minNeighbors=5,
-                    minSize=(30, 30),
-                    
-                )
-                for (x, y, w, h) in faces:
-                    roi = frame[y:y+h,x:x+w]
-                    img_returned = spherize(roi)
-                    frame[y:y+h, x:x+w] = img_returned
+            if self.distortion == 1:
+                if not self.tracking:
+                    faces = self.faceCascade.detectMultiScale(frame, 1.3, 5)
+                    maxArea = 0
+                    x = 0
+                    y = 0
+                    w = 0
+                    h = 0
+                    for (_x, _y, _w, _h) in faces:
+                        if  _w * _h > maxArea:
+                            x = int(_x)
+                            y = int(_y)
+                            w = int(_w)
+                            h = int(_h)
+                            maxArea = w * h
+
+                    if maxArea > 0 :
+
+                        self.tracker.start_track(frame,
+                                        dlib.rectangle( x,
+                                                        y,
+                                                        x + w,
+                                                        y + h))
+                        roi = frame[y : y + h, x : x + w]
+                        try:
+                            if self.distort_method is 0:
+                                img_returned = spherize(roi)
+                            elif self.distort_method is 1:
+                                img_returned = gridline(roi)
+                            elif self.distort_method is 2:
+                                img_returned = wave(roi)
+
+                            frame[y : y + h, x : x + w] = img_returned
+                            self.tracking = 1
+                        except:
+                            pass
+
+                else:
+                    trackingQuality = self.tracker.update(frame)
+                    if trackingQuality >= 8.75:
+                        tracked_position =  self.tracker.get_position()
+
+                        t_x = int(tracked_position.left())
+                        t_y = int(tracked_position.top())
+                        t_w = int(tracked_position.width())
+                        t_h = int(tracked_position.height())
+                        roi = frame[t_y : t_y + t_h, t_x : t_x + t_w]
+                        try:
+                            if self.distort_method is 0:
+                                img_returned = spherize(roi)
+                            elif self.distort_method is 1:
+                                img_returned = gridline(roi)
+                            elif self.distort_method is 2:
+                                img_returned = wave(roi)
+                            frame[t_y : t_y + t_h, t_x : t_x + t_w] = img_returned
+                        except:
+                            pass
+                    else:
+                        self.tracking = 0;
             self.currentFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
- 
     def convertFrame(self):
         """     converts frame to format suitable for QtGui            """
         try:
