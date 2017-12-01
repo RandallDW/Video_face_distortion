@@ -58,16 +58,17 @@ class Video():
                                                         y,
                                                         x + w,
                                                         y + h))
-                        roi = frame[y : y + h, x : x + w]
+                        roi = frame[y:y+h, x:x+w]
                         try:
                             if self.distort_method is 0:
                                 img_returned = spherize(roi)
                             elif self.distort_method is 1:
+                                print('gridline')
                                 img_returned = gridline(roi)
                             elif self.distort_method is 2:
                                 img_returned = wave(roi)
 
-                            frame[y : y + h, x : x + w] = img_returned
+                            frame[y:y+h, x:x+w] = img_returned
                             self.tracking = 1
                         except:
                             pass
@@ -81,20 +82,22 @@ class Video():
                         t_y = int(tracked_position.top())
                         t_w = int(tracked_position.width())
                         t_h = int(tracked_position.height())
-                        roi = frame[t_y : t_y + t_h, t_x : t_x + t_w]
+                        roi = frame[t_y:t_y+t_h, t_x:t_x+t_w]
                         try:
                             if self.distort_method is 0:
                                 img_returned = spherize(roi)
                             elif self.distort_method is 1:
+                                print('gridline')
                                 img_returned = gridline(roi)
                             elif self.distort_method is 2:
                                 img_returned = wave(roi)
-                            frame[t_y : t_y + t_h, t_x : t_x + t_w] = img_returned
+                            frame[t_y:t_y+t_h, t_x:t_x+t_w] = img_returned
                         except:
                             pass
                     else:
                         self.tracking = 0;
             self.currentFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
     def convertFrame(self):
         """     converts frame to format suitable for QtGui            """
         try:

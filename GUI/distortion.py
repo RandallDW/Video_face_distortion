@@ -1,13 +1,18 @@
 import math
 import os
 import numpy as np
+
+
+"""
+    spherize distortion
+"""
 def spherize(img):
     width = img.shape[1]
     height = img.shape[0]
     mid_x = width / 2
     mid_y = height / 2
     max_mid_xy = max(mid_x, mid_y)
-    temp = np.zeros((height,width,3),np.uint8)
+    temp = np.zeros((height, width, 3), np.uint8)
     
     for w in range(0, width):
         for h in range(0, height):
@@ -28,7 +33,8 @@ def spherize(img):
 
 
 def gridline(img):
-    n=100
+    print('in func')
+    n = 100
     sobel_x = np.c_[
         [-1,0,1],
         [-2,0,2],
@@ -43,13 +49,14 @@ def gridline(img):
 
     ims = []
     for d in range(3):
-        sx = signal.convolve2d(img[:,:,d], sobel_x, mode="same", boundary="symm")
-        sy = signal.convolve2d(img[:,:,d], sobel_y, mode="same", boundary="symm")
+        sx = signal.convolve2d(img[:, :, d], sobel_x, mode="same", boundary="symm")
+        sy = signal.convolve2d(img[:, :, d], sobel_y, mode="same", boundary="symm")
         ims.append(np.sqrt(sx*sx + sy*sy))
 
     im_conv = np.stack(ims, axis=2).astype("uint8")
 
     return im_conv
+
 
 def wave(img):
     rows, cols, color = img.shape
@@ -59,5 +66,5 @@ def wave(img):
             for j in range(cols):
                 offset_x = int(25.0 * math.sin(2 * 3.14 * i / 180))
                 offset_y = int(25.0 * math.sin(2 * 3.14 * j / 180))
-                img_out[i,j,k] = img[(i+offset_y)%rows,(j+offset_x)%cols,k]
+                img_out[i, j, k] = img[(i+offset_y) % rows, (j + offset_x) % cols, k]
     return img_out

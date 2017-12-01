@@ -60,14 +60,16 @@ class GUI(QMainWindow):
             self.ui.is_distorted.setCheckState(False)
 
     def sphere_distortion(self):
-        self.video.distort_method = 0
+        if self.video is not None:
+            self.video.distort_method = 0
 
     def gridline_distortion(self):
-        self.video.distort_method = 1
+        if self.video is not None:
+            self.video.distort_method = 1
 
     def wave_distortion(self):
-        self.video.distort_method = 2
-
+        if self.video is not None:
+            self.video.distort_method = 2
 
 
 
