@@ -6,6 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *   
 from mainWindow import *
 from video import *
+from distortion_parameter import *
 
 class GUI(QMainWindow):
     def __init__(self, parent=None):
@@ -61,15 +62,15 @@ class GUI(QMainWindow):
 
     def sphere_distortion(self):
         if self.video is not None:
-            self.video.distort_method = 0
+            self.video.distort_method = SPHERIZE
 
     def gridline_distortion(self):
         if self.video is not None:
-            self.video.distort_method = 1
+            self.video.distort_method = GRIDLINE
 
     def wave_distortion(self):
         if self.video is not None:
-            self.video.distort_method = 2
+            self.video.distort_method = WAVE
 
 
 

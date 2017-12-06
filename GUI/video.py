@@ -1,17 +1,19 @@
 import cv2
 import sys  
+import dlib
+import os.path
 import logging as log  
 import datetime as dt  
 import numpy as np
+
 from time import sleep  
-from distortion import *
-import os.path
-import dlib
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *   
 from GUI import *
 from distortion import *
+from distortion_parameter import *
+
 
 class Video():
     def __init__(self,capture):
@@ -27,7 +29,7 @@ class Video():
         self.tracking = 0
 
         self.distortion = 0
-        self.distort_method = 0
+        self.distort_method = SPHERIZE
  
     def captureNextFrame(self):
         """                           
@@ -60,12 +62,12 @@ class Video():
                                                         y + h))
                         roi = frame[y:y+h, x:x+w]
                         try:
-                            if self.distort_method is 0:
+                            if self.distort_method is SPHERIZE:
                                 img_returned = spherize(roi)
-                            elif self.distort_method is 1:
+                            elif self.distort_method is GRIDLINE:
                                 print('gridline')
                                 img_returned = gridline(roi)
-                            elif self.distort_method is 2:
+                            elif self.distort_method is WAVE:
                                 img_returned = wave(roi)
 
                             frame[y:y+h, x:x+w] = img_returned
@@ -84,12 +86,12 @@ class Video():
                         t_h = int(tracked_position.height())
                         roi = frame[t_y:t_y+t_h, t_x:t_x+t_w]
                         try:
-                            if self.distort_method is 0:
+                            if self.distort_method is SPHERIZE:
                                 img_returned = spherize(roi)
-                            elif self.distort_method is 1:
+                            elif self.distort_method is GRIDLINE:
                                 print('gridline')
                                 img_returned = gridline(roi)
-                            elif self.distort_method is 2:
+                            elif self.distort_method is WAVE:
                                 img_returned = wave(roi)
                             frame[t_y:t_y+t_h, t_x:t_x+t_w] = img_returned
                         except:
