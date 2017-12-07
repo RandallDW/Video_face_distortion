@@ -42,6 +42,7 @@
         - $ ./booststrap.sh --with-libraries=python
         - $ ./b2
         - $ sudo ./b2 install
+	- $ sudo apt-get install libboost-all-dev
 
 ### Sample Code
 	After installation, please run following files to make sure your opencv and
