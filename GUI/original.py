@@ -1,7 +1,7 @@
 import math
-#import os
+import os
 import numpy as np
-from scipy import signal
+
 
 """
     spherize distortion
@@ -13,27 +13,27 @@ def spherize(img):
     mid_y = height / 2
     max_mid_xy = max(mid_x, mid_y)
     temp = np.zeros((height, width, 3), np.uint8)
-
+    
     for w in range(0, width):
         for h in range(0, height):
             offset_x = w - mid_x
             offset_y = h - mid_y
-
+            
             radian = math.atan2(offset_y, offset_x)
             radius = (offset_x ** 2 + offset_y ** 2) / max_mid_xy
-
+            
             x = int(radius * math.cos(radian)) + mid_x
             y = int(radius * math.sin(radian)) + mid_y
-
+            
             x = min(max(x, 0), width - 1)
             y = min(max(y, 0), height - 1)
-
             temp[w, h] = img[x, y]
 
     return temp
 
 
 def gridline(img):
+    print('in func')
     n = 100
     sobel_x = np.c_[
         [-1,0,1],
@@ -49,8 +49,8 @@ def gridline(img):
 
     ims = []
     for d in range(3):
-        sx = signal.convolve2d(img[:,:,d], sobel_x, mode="same", boundary="symm")
-        sy = signal.convolve2d(img[:,:,d], sobel_y, mode="same", boundary="symm")
+        sx = signal.convolve2d(img[:, :, d], sobel_x, mode="same", boundary="symm")
+        sy = signal.convolve2d(img[:, :, d], sobel_y, mode="same", boundary="symm")
         ims.append(np.sqrt(sx*sx + sy*sy))
 
     im_conv = np.stack(ims, axis=2).astype("uint8")
