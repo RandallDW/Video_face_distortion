@@ -65,7 +65,6 @@ class Video():
                             if self.distort_method is SPHERIZE:
                                 img_returned = spherize(roi)
                             elif self.distort_method is GRIDLINE:
-                                print('gridline')
                                 img_returned = gridline(roi)
                             elif self.distort_method is WAVE:
                                 img_returned = wave(roi)
@@ -89,7 +88,6 @@ class Video():
                             if self.distort_method is SPHERIZE:
                                 img_returned = spherize(roi)
                             elif self.distort_method is GRIDLINE:
-                                print('gridline')
                                 img_returned = gridline(roi)
                             elif self.distort_method is WAVE:
                                 img_returned = wave(roi)
