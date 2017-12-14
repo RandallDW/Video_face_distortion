@@ -62,12 +62,13 @@ while video_capture.isOpened():
                     img_returned = gridline(roi)
                 elif distort is 2:
                     img_returned = wave(roi)
+                elif distort is 3:
+                    img_returned = rainbow(roi)
 
             except:
                 continue
 	    frame[y : y + h, x : x + w] = img_returned
             tracking = 1
-
     else:
 	trackingQuality = tracker.update( frame )
         if trackingQuality >= 8.75:
@@ -85,6 +86,8 @@ while video_capture.isOpened():
                     img_returned = gridline(roi)
                 elif distort is 2:
                     img_returned = wave(roi)
+                elif distort is 3:
+                    img_returned = rainbow(roi)
                     
             except:
                 continue
@@ -106,6 +109,8 @@ while video_capture.isOpened():
         distort = 1
     elif ch & 0XFF == ord('e'):
         distort = 2
+    elif ch & 0XFF == ord('r'):
+        distort = 3
 
     
   

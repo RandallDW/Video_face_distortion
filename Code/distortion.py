@@ -1,4 +1,5 @@
 import math
+import cv2  
 import math
 from scipy import signal
 import numpy as np
@@ -61,3 +62,25 @@ def wave(img):
                 offset_y = int(25.0 * math.sin(2 * 3.14 * j / 180))
                 img_out[i,j,k] = img[(i+offset_y)%rows,(j+offset_x)%cols,k]
     return img_out
+
+def rainbow(img):
+    img_1 = img.copy()
+    img_2 = img.copy()
+    img_3 = img.copy()
+    img_4 = img.copy()
+
+    img_out = img.copy()
+
+    Offset = 7
+
+    row, col, channel = img.shape
+    
+    img_1[:, 0 : col-1-Offset, :] = img[:, Offset:col-1, :] 
+    img_2[:, Offset:col-1, :]     = img[:, 0 : col-1-Offset, :] 
+    img_3[0:row-1-Offset, :, :]   = img[Offset:row-1, :, :] 
+    img_4[Offset:row-1, :, :]     = img[0:row-1-Offset, :, :]
+
+    img_out = (img_1 + img_2 + img_3 + img_4)  
+    return img_out  
+
+ 

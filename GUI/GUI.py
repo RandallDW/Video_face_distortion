@@ -11,7 +11,7 @@ from distortion_parameter import *
 class GUI(QMainWindow):
     def __init__(self, parent=None):
         QWidget.__init__(self,parent)
-        self.ui = Ui_Form()
+        self.ui = Ui_MainWidget()
         self.ui.setupUi(self)
 
         self.ui.is_distorted.stateChanged.connect(self.change_distortion_status)
