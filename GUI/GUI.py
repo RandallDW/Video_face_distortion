@@ -24,6 +24,7 @@ class GUI(QMainWindow):
         self.ui.rainbow.clicked.connect(self.rainbow_distortion)
 
         self.video = None
+        self.is_distortion = 0
         self._timer = QTimer(self)
         self._timer.timeout.connect(self.play)
         self._timer.start(27)
@@ -41,6 +42,11 @@ class GUI(QMainWindow):
                 print ("No frame")
 
     def change_distortion_status(self):
+        if self.ui.is_distorted.isChecked():
+            self.is_distortion = 1
+        else:
+            self.is_distortion = 0
+
         if self.video is not None:
             if self.ui.is_distorted.isChecked():
                 self.video.distortion = 1
@@ -52,7 +58,7 @@ class GUI(QMainWindow):
             self.video_capture = cv2.VideoCapture(0)  
             self.video_capture.set(3, 20)
             self.video_capture.set(4, 20)
-            self.video = Video(self.video_capture)
+            self.video = Video(self.video_capture, self.is_distortion)
 
     def stop_video(self):
         if self.video is not None:

@@ -16,7 +16,7 @@ from distortion_parameter import *
 
 
 class Video():
-    def __init__(self,capture):
+    def __init__(self, capture, distortion):
         self.capture = capture
         self.currentFrame=np.array([])
 
@@ -28,7 +28,7 @@ class Video():
         self.tracker = dlib.correlation_tracker()
         self.tracking = 0
 
-        self.distortion = 0
+        self.distortion = distortion
         self.distort_method = SPHERIZE
  
     def captureNextFrame(self):
