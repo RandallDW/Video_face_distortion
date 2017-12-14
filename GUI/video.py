@@ -68,6 +68,8 @@ class Video():
                                 img_returned = gridline(roi)
                             elif self.distort_method is WAVE:
                                 img_returned = wave(roi)
+                            elif self.distort_method is RAINBOW:
+                                img_returned = rainbow(roi)
 
                             frame[y:y+h, x:x+w] = img_returned
                             self.tracking = 1
@@ -91,6 +93,8 @@ class Video():
                                 img_returned = gridline(roi)
                             elif self.distort_method is WAVE:
                                 img_returned = wave(roi)
+                            elif self.distort_method is RAINBOW:
+                                img_returned = rainbow(roi)
                             frame[t_y:t_y+t_h, t_x:t_x+t_w] = img_returned
                         except:
                             pass

@@ -21,6 +21,7 @@ class GUI(QMainWindow):
         self.ui.sphere.clicked.connect(self.sphere_distortion)
         self.ui.gridline.clicked.connect(self.gridline_distortion)
         self.ui.wave.clicked.connect(self.wave_distortion)
+        self.ui.rainbow.clicked.connect(self.rainbow_distortion)
 
         self.video = None
         self._timer = QTimer(self)
@@ -71,6 +72,10 @@ class GUI(QMainWindow):
     def wave_distortion(self):
         if self.video is not None:
             self.video.distort_method = WAVE
+
+    def rainbow_distortion(self):
+        if self.video is not None:
+            self.video.distort_method = RAINBOW
 
 
 

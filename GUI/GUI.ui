@@ -434,7 +434,7 @@
   </property>
   <property name="font">
    <font>
-    <family>Comic Sans MS</family>
+    <family>Courier 10 Pitch</family>
    </font>
   </property>
   <property name="windowTitle">
@@ -484,7 +484,7 @@
      <x>520</x>
      <y>10</y>
      <width>211</width>
-     <height>171</height>
+     <height>181</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -500,13 +500,13 @@
     <enum>QFrame::Raised</enum>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
-    <item row="0" column="0">
+    <item row="1" column="0">
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="2" column="0">
        <widget class="QPushButton" name="gridline">
         <property name="font">
          <font>
-          <family>Comic Sans MS</family>
+          <family>Courier 10 Pitch</family>
          </font>
         </property>
         <property name="text">
@@ -518,7 +518,7 @@
        <widget class="QPushButton" name="sphere">
         <property name="font">
          <font>
-          <family>Comic Sans MS</family>
+          <family>Courier 10 Pitch</family>
          </font>
         </property>
         <property name="text">
@@ -526,33 +526,11 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
-        <property name="font">
-         <font>
-          <family>Comic Sans MS</family>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Distortion Method</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-      </item>
       <item row="3" column="0">
        <widget class="QPushButton" name="wave">
         <property name="font">
          <font>
-          <family>Comic Sans MS</family>
+          <family>Courier 10 Pitch</family>
          </font>
         </property>
         <property name="text">
@@ -564,11 +542,49 @@
        <widget class="QPushButton" name="rainbow">
         <property name="font">
          <font>
-          <family>Comic Sans MS</family>
+          <family>Courier 10 Pitch</family>
          </font>
         </property>
         <property name="text">
          <string>Rainbow</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="distortion_label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <family>Courier 10 Pitch</family>
+          <pointsize>13</pointsize>
+          <weight>50</weight>
+          <italic>true</italic>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Distortion Method</string>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -580,7 +596,7 @@
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>414</y>
+     <y>410</y>
      <width>211</width>
      <height>111</height>
     </rect>
@@ -604,7 +620,7 @@
        <widget class="QPushButton" name="start_video">
         <property name="font">
          <font>
-          <family>Comic Sans MS</family>
+          <family>Courier 10 Pitch</family>
          </font>
         </property>
         <property name="text">
@@ -616,7 +632,7 @@
        <widget class="QPushButton" name="end_video">
         <property name="font">
          <font>
-          <family>Comic Sans MS</family>
+          <family>Courier 10 Pitch</family>
          </font>
         </property>
         <property name="text">
@@ -628,7 +644,7 @@
        <widget class="QCheckBox" name="is_distorted">
         <property name="font">
          <font>
-          <family>Comic Sans MS</family>
+          <family>Courier 10 Pitch</family>
          </font>
         </property>
         <property name="text">
