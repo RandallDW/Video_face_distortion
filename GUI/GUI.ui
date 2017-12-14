@@ -11,6 +11,12 @@
     <height>530</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="palette">
    <palette>
     <active>
@@ -426,6 +432,11 @@
     </disabled>
    </palette>
   </property>
+  <property name="font">
+   <font>
+    <family>Comic Sans MS</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Motion Triggered Face Distortion </string>
   </property>
@@ -456,6 +467,12 @@
       <height>481</height>
      </rect>
     </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -467,8 +484,14 @@
      <x>520</x>
      <y>10</y>
      <width>211</width>
-     <height>191</height>
+     <height>171</height>
     </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
    </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
@@ -481,6 +504,11 @@
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="2" column="0">
        <widget class="QPushButton" name="gridline">
+        <property name="font">
+         <font>
+          <family>Comic Sans MS</family>
+         </font>
+        </property>
         <property name="text">
          <string>Gridline</string>
         </property>
@@ -488,6 +516,11 @@
       </item>
       <item row="1" column="0">
        <widget class="QPushButton" name="sphere">
+        <property name="font">
+         <font>
+          <family>Comic Sans MS</family>
+         </font>
+        </property>
         <property name="text">
          <string>Sphere</string>
         </property>
@@ -495,13 +528,33 @@
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Comic Sans MS</family>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Distortion Method</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
       <item row="3" column="0">
        <widget class="QPushButton" name="wave">
+        <property name="font">
+         <font>
+          <family>Comic Sans MS</family>
+         </font>
+        </property>
         <property name="text">
          <string>Wave</string>
         </property>
@@ -509,6 +562,11 @@
       </item>
       <item row="4" column="0">
        <widget class="QPushButton" name="rainbow">
+        <property name="font">
+         <font>
+          <family>Comic Sans MS</family>
+         </font>
+        </property>
         <property name="text">
          <string>Rainbow</string>
         </property>
@@ -527,6 +585,12 @@
      <height>111</height>
     </rect>
    </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
    </property>
@@ -538,6 +602,11 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="QPushButton" name="start_video">
+        <property name="font">
+         <font>
+          <family>Comic Sans MS</family>
+         </font>
+        </property>
         <property name="text">
          <string>Start</string>
         </property>
@@ -545,6 +614,11 @@
       </item>
       <item>
        <widget class="QPushButton" name="end_video">
+        <property name="font">
+         <font>
+          <family>Comic Sans MS</family>
+         </font>
+        </property>
         <property name="text">
          <string>End</string>
         </property>
@@ -552,6 +626,11 @@
       </item>
       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QCheckBox" name="is_distorted">
+        <property name="font">
+         <font>
+          <family>Comic Sans MS</family>
+         </font>
+        </property>
         <property name="text">
          <string>Distortion</string>
         </property>
