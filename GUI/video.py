@@ -17,7 +17,7 @@ from smooth import *
 import numpy.ma as ma
 
 class Video():
-    def __init__(self,capture):
+    def __init__(self, capture, distortion):
         self.capture = capture
         self.currentFrame=np.array([])
 
@@ -29,7 +29,7 @@ class Video():
         self.tracker = dlib.correlation_tracker()
         self.tracking = 0
 
-        self.distortion = 0
+        self.distortion = distortion
         self.distort_method = SPHERIZE
  
     def captureNextFrame(self):
@@ -83,6 +83,8 @@ class Video():
                                 img_returned = gridline(roi)
                             elif self.distort_method is WAVE:
                                 img_returned = wave(roi)
+                            elif self.distort_method is RAINBOW:
+                                img_returned = rainbow(roi)
 				
 #                            frame[y:y+h, x:x+w] = img_returned
 			    mask = build_face_mask(w,h)
@@ -113,11 +115,12 @@ class Video():
                             if self.distort_method is SPHERIZE:
                                 img_returned = spherize(roi)
                             elif self.distort_method is GRIDLINE:
- #                               print('gridline')
                                 img_returned = gridline(roi)
                             elif self.distort_method is WAVE:
                                 img_returned = wave(roi)
-                           # frame[t_y:t_y+t_h, t_x:t_x+t_w] = img_returned
+                            elif self.distort_method is RAINBOW:
+                                img_returned = rainbow(roi)
+
 			    t_mask = build_face_mask(t_w,t_h)
 			    t_idx = (t_mask==0)
 			    img_returned[t_idx] = roi[t_idx]

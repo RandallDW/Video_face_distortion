@@ -11,7 +11,7 @@ from distortion_parameter import *
 class GUI(QMainWindow):
     def __init__(self, parent=None):
         QWidget.__init__(self,parent)
-        self.ui = Ui_Form()
+        self.ui = Ui_MainWidget()
         self.ui.setupUi(self)
 
         self.ui.is_distorted.stateChanged.connect(self.change_distortion_status)
@@ -21,8 +21,10 @@ class GUI(QMainWindow):
         self.ui.sphere.clicked.connect(self.sphere_distortion)
         self.ui.gridline.clicked.connect(self.gridline_distortion)
         self.ui.wave.clicked.connect(self.wave_distortion)
+        self.ui.rainbow.clicked.connect(self.rainbow_distortion)
 
         self.video = None
+        self.is_distortion = 0
         self._timer = QTimer(self)
         self._timer.timeout.connect(self.play)
         self._timer.start(27)
@@ -40,6 +42,11 @@ class GUI(QMainWindow):
                 print ("No frame")
 
     def change_distortion_status(self):
+        if self.ui.is_distorted.isChecked():
+            self.is_distortion = 1
+        else:
+            self.is_distortion = 0
+
         if self.video is not None:
             if self.ui.is_distorted.isChecked():
                 self.video.distortion = 1
@@ -53,7 +60,7 @@ class GUI(QMainWindow):
                 print('err')
             self.video_capture.set(3, 20)
             self.video_capture.set(4, 20)
-            self.video = Video(self.video_capture)
+            self.video = Video(self.video_capture, self.is_distortion)
 
     def stop_video(self):
         if self.video is not None:
@@ -73,6 +80,10 @@ class GUI(QMainWindow):
     def wave_distortion(self):
         if self.video is not None:
             self.video.distort_method = WAVE
+
+    def rainbow_distortion(self):
+        if self.video is not None:
+            self.video.distort_method = RAINBOW
 
 
 
