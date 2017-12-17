@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'GUI.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.5.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -171,6 +171,7 @@ class Ui_MainWidget(object):
         self.VideoFrame.setSizePolicy(sizePolicy)
         self.VideoFrame.setText("")
         self.VideoFrame.setObjectName("VideoFrame")
+        self.VideoFrame.raise_()
         self.distortion_controller = QtWidgets.QFrame(MainWidget)
         self.distortion_controller.setGeometry(QtCore.QRect(520, 10, 211, 181))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -264,6 +265,28 @@ class Ui_MainWidget(object):
         self.is_distorted.setObjectName("is_distorted")
         self.verticalLayout.addWidget(self.is_distorted, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
         self.verticalLayout_2.addLayout(self.verticalLayout)
+        self.gridLayoutWidget = QtWidgets.QWidget(MainWidget)
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(520, 210, 211, 120))
+        self.gridLayoutWidget.setObjectName("gridLayoutWidget")
+        self.InputFrame = QtWidgets.QGridLayout(self.gridLayoutWidget)
+        self.InputFrame.setObjectName("InputFrame")
+        self.input_label = QtWidgets.QLabel(self.gridLayoutWidget)
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        font.setItalic(True)
+        self.input_label.setFont(font)
+        self.input_label.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
+        self.input_label.setObjectName("input_label")
+        self.InputFrame.addWidget(self.input_label, 0, 0, 1, 1)
+        self.lineEdit = QtWidgets.QLineEdit(self.gridLayoutWidget)
+        self.lineEdit.setObjectName("lineEdit")
+        self.InputFrame.addWidget(self.lineEdit, 3, 0, 1, 1)
+        self.file_input_check = QtWidgets.QCheckBox(self.gridLayoutWidget)
+        self.file_input_check.setObjectName("file_input_check")
+        self.InputFrame.addWidget(self.file_input_check, 1, 0, 1, 1)
+        self.file_browse = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.file_browse.setObjectName("file_browse")
+        self.InputFrame.addWidget(self.file_browse, 2, 0, 1, 1)
 
         self.retranslateUi(MainWidget)
         QtCore.QMetaObject.connectSlotsByName(MainWidget)
@@ -280,4 +303,7 @@ class Ui_MainWidget(object):
         self.start_video.setText(_translate("MainWidget", "Start"))
         self.end_video.setText(_translate("MainWidget", "End"))
         self.is_distorted.setText(_translate("MainWidget", "Distortion"))
+        self.input_label.setText(_translate("MainWidget", "Input Options"))
+        self.file_input_check.setText(_translate("MainWidget", "File Input"))
+        self.file_browse.setText(_translate("MainWidget", "Browse File"))
 
