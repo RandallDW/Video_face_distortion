@@ -4,15 +4,13 @@ import sys
 import logging as log  
 import datetime as dt  
 from time import sleep  
-from distortion2 import *
-from distortion import *
 import os.path
 upper_dir = os.path.abspath('..')
 
 cascPath = upper_dir + "/haarcascades" + "/haarcascade_frontalface_default.xml"  
 faceCascade = cv2.CascadeClassifier(cascPath)  
   
-video_capture = cv2.VideoCapture('test1.avi')  
+video_capture = cv2.VideoCapture(0)  
   
   
 while True:  
@@ -35,10 +33,12 @@ while True:
 
 
     for (x, y, w, h) in faces:
-        roi = frame[y:y+h,x:x+w]
+        
+        print(x, y, w, h)
+
+        
         cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)  
-        img_returned=spherize(roi)
-        frame[y:y+h, x:x+w] = img_returned
+  
   
     cv2.imshow('Video', frame)  
   
